@@ -27,11 +27,11 @@ pipeline {
 	     	bat 'docker push jomardev25/blog-app'
 	   }
 
-        stage("Run Docker Image") {
-           	def dockerRun = 'docker run -p 8090:8090 -p 5432:5432 -d jomardev25/blog-app'
-	     	sshagent(['doker-server-key']) {
-	       		bat "ssh -o StrictHostKeyChecking=no Jomar@192.168.1.7 ${dockerRun}"
-	     	}
-        }
+       stage("Run Docker Image") {
+			def dockerRun = 'docker run -p 8090:8090 -p 5432:5432 -d jomardev25/blog-app'
+			sshagent(['doker-server-key']) {
+				bat "ssh -o StrictHostKeyChecking=no Jomar@192.168.1.7 ${dockerRun}"
+			}
+       }
     }
 }
